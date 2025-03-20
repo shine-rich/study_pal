@@ -1,0 +1,78 @@
+{
+  "type":"Live2D Model Setting",
+  "name":"shizuku",
+  "model":"haru_greeter_t03.moc3",
+  "textures": [
+    "haru_greeter_t03.2048/texture_00.png",
+    "haru_greeter_t03.2048/texture_01.png"
+  ],
+  "physics": "haru_greeter_t03.physics3.json",
+  "pose": "haru_greeter_t03.pose3.json",
+  "expressions": [
+      {
+          "name": "f00",
+          "file": "expressions/F01.exp3.json"
+      },
+      {
+          "name": "f01",
+          "file": "expressions/F02.exp3.json"
+      },
+      {
+          "name": "f02",
+          "file": "expressions/F03.exp3.json"
+      },
+      {
+          "name": "f03",
+          "file": "expressions/F04.exp3.json"
+      },
+      {
+          "name": "f04",
+          "file": "expressions/F05.exp3.json"
+      },
+      {
+          "name": "f05",
+          "file": "expressions/F06.exp3.json"
+      },
+      {
+          "name": "f06",
+          "file": "expressions/F07.exp3.json"
+      },
+      {
+          "name": "f07",
+          "file": "expressions/F08.exp3.json"
+      }
+  ],
+  "hit_areas": [
+    {
+      "id": "HitArea",
+      "name": "head"
+    },
+    {
+      "id": "HitArea2",
+      "name": "body"
+    }
+  ],
+  "motions": {
+      "idle": [
+          {
+          "file": "motion/haru_g_idle.motion3.json"
+          },
+          {
+          "file": "motion/haru_g_m07.motion3.json"
+          },
+          {
+          "file": "motion/haru_g_m15.motion3.json"
+          }
+      ],
+      "tap_body": [
+          {
+          "file": "motion/haru_g_m14.motion3.json",
+          "sound": "sounds/flickHead_00.mp3"
+          },
+          {
+          "file": "motion/haru_g_m05.motion3.json",
+          "sound": "sounds/flickHead_01.mp3"
+          }
+      ]
+  }
+}  
