@@ -45,30 +45,7 @@ const includesAnySubstring = (string, array) => {
   return array.some(substring => string.includes(substring));
 }
 
-const processMessage = async (message) => {
-  // random delay for "authenticity"
-  const delay = Math.random() * 2000 + 300;
-
-  try {
-    // Send the user's input to the FastAPI server
-    const response = await fetch('http://172.104.17.233:8001/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_input: message }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const data = await response.json();
-    const botResponse = data.response;
-
-    // Display the bot's response in the chat
-    setTimeout(() => createMessage('chiai', botResponse), delay);
-
+const speak_message = (botResponse) => {  
     // Use speech synthesis to speak the bot's response
     if ("speechSynthesis" in window || speechSynthesis) {
       const T2S = window.speechSynthesis || speechSynthesis;
@@ -103,7 +80,78 @@ const processMessage = async (message) => {
         T2S.cancel();
       };
     }
+}
+
+// Add a reference to the toggle switch
+const apiToggle = document.getElementById('api-toggle-switch');
+
+// Initialize should_use_api based on the toggle state
+let should_use_api = apiToggle.checked;
+
+// Listen for toggle changes
+apiToggle.addEventListener('change', () => {
+  should_use_api = apiToggle.checked;
+  console.log(`API mode: ${should_use_api ? 'ON' : 'OFF'}`);
+});
+
+const processMessage = async (message) => {
+  // random delay for "authenticity"
+  const delay = Math.random() * 2000 + 300;
+
+  // Add a loading indicator
+  const loadingDiv = document.createElement('div');
+  loadingDiv.className = 'chiai loading-indicator';
+  loadingDiv.innerText = 'Thinking';
+  messages.append(loadingDiv);
+  loadingDiv.scrollIntoView();
+
+  try {
+    if (should_use_api) {
+      const timeout = 30000; // 30 seconds
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timed out')), timeout);
+      });
+
+      // Send the user's input to the FastAPI server  
+      const response = await Promise.race([
+        fetch('http://chat.santostar.com:8001/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ user_input: message }),
+        }),
+        timeoutPromise,
+      ]);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      const botResponse = data.response;
+
+      // Remove the loading indicator
+      messages.removeChild(loadingDiv);
+
+      // Display the bot's response in the chat
+      setTimeout(() => createMessage('chiai', botResponse), delay);
+      speak_message(botResponse);
+    } else {
+      NLP
+      .process(message).then((e) => {
+        const answer = e.answer || "Sorry, I don't speak that language";
+
+        // Remove the loading indicator
+        messages.removeChild(loadingDiv);
+
+        setTimeout(() => createMessage('chiai', answer), delay)
+        speak_message(answer);
+      });
+    }
   } catch (error) {
+    // Remove the loading indicator on error
+    messages.removeChild(loadingDiv);
     console.error('Error:', error);
     setTimeout(() => createMessage('chiai', "Sorry, I couldn't process your request."), delay);
   }

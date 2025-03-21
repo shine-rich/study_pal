@@ -102,6 +102,34 @@
   transform-origin: bottom left;
 }
 
+/* Add animation for the loading indicator */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading-indicator {
+  animation: blink 1s infinite;
+}
+
+.loading-indicator::after {
+  content: '......';
+  display: inline-block;
+  width: 6em;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: dot-animation 1.5s infinite;
+}
+
+@keyframes dot-animation {
+  0% { width: 6em; }
+  20% { width: 6em; }
+  40% { width: 6em; }
+  60% { width: 6em; }
+  80% { width: 6em; }
+  100% { width: 6em; }
+}
+
 .me {
   margin-left: auto;
   text-align: right;
@@ -174,4 +202,47 @@
     max-height: 50vh;
     overflow-y: hidden;
   }
+}
+
+#api-toggle {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#api-toggle label {
+  font-size: 14px;
+  color: #555;
+}
+
+#api-toggle-switch {
+  width: 40px;
+  height: 20px;
+  position: relative;
+  appearance: none;
+  background-color: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#api-toggle-switch:checked {
+  background-color: #4CAF50;
+}
+
+#api-toggle-switch::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+#api-toggle-switch:checked::before {
+  transform: translateX(20px);
 }
