@@ -22,13 +22,43 @@
         </div>
         <!-- Add the toggle switch here -->
         <div id="api-toggle">
-          <label for="api-toggle-switch">Use API:</label>
+          <label for="api-toggle-switch">Use AI:</label>
           <input type="checkbox" id="api-toggle-switch" checked>
         </div>
         <form id="form">
           <input id="message" placeholder="say hi!" autocomplete="off">
           <button id="send" type="submit">Send</button>
         </form>
+      </div>
+      <div id="overlay" style="display: none;">
+        <div id="overlay-content">
+          <div id="dynamic-content">
+            <h2>Wave Hunters</h2>
+            <p>2,168 members, 196 online</p>
+            <h3>Holiday Plans</h3>
+            <div class="message">
+              <strong>Roberto</strong>
+              <p>Good morning everyone</p>
+              <p>Any idea what time it is?</p>
+              <p>15:37</p>
+            </div>
+            <div class="message">
+              <strong>Roberto</strong>
+              <p>Still morning in Tokyo!</p>
+              <p>15:37</p>
+            </div>
+            <div class="poll">
+              <strong>Monika Parker</strong>
+              <p>Best waves so far?</p>
+              <p>Anonymous Poll</p>
+              <p>67% South Coast</p>
+              <p>33% White Sands</p>
+              <p>185 votes</p>
+              <p>15:39</p>
+            </div>
+          </div>
+          <button id="close-overlay">Close</button>
+        </div>
       </div>
     </main>
     <div id="loader"></div>

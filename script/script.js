@@ -94,9 +94,40 @@ apiToggle.addEventListener('change', () => {
   console.log(`API mode: ${should_use_api ? 'ON' : 'OFF'}`);
 });
 
+// Add references to the overlay and close button
+const overlay = document.getElementById('overlay');
+const closeOverlayButton = document.getElementById('close-overlay');
+
+// Function to show the overlay
+function showOverlay(content) {
+  document.getElementById('dynamic-content').innerHTML = `${content}`;
+  overlay.style.display = 'flex';
+}
+
+// Function to hide the overlay
+function hideOverlay() {
+  overlay.style.display = 'none';
+}
+
+// Close the overlay when the close button is clicked
+closeOverlayButton.addEventListener('click', hideOverlay);
+
 const processMessage = async (message) => {
   // random delay for "authenticity"
-  const delay = Math.random() * 2000 + 300;
+  const delay = Math.random() + 300;
+
+  // Check for predefined commands
+  if (message.toLowerCase().includes("show poll")) {
+    const pollContent = `
+      <h2>Poll Results</h2>
+      <p>Best waves so far?</p>
+      <p>67% South Coast</p>
+      <p>33% White Sands</p>
+      <p>185 votes</p>
+    `;
+    showOverlay(pollContent);
+    return; // Exit the function to prevent further processing
+  }
 
   // Add a loading indicator
   const loadingDiv = document.createElement('div');
