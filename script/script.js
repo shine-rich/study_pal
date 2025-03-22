@@ -281,7 +281,10 @@ const processMessage = async (message) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ user_input: message }),
+          body: JSON.stringify({
+            user_input: message,
+            user_id: 'tGcsMce6an1Hl4GtW0lQOQiOMyCFGD3v' // Include the user_id
+          }),
         }),
         timeoutPromise,
       ]);
