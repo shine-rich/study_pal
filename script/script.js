@@ -103,19 +103,40 @@ const therapistList = document.getElementById('therapist-list');
 function showTherapistOverlay() {
   // Hardcoded therapist data (replace with dynamic data if needed)
   const therapists = [
-    { name: "Tamara Denise Pena", link: "https://example.com/tamara" },
-    { name: "Maria da Silva", link: "https://example.com/maria" },
-    { name: "Bryan Blakeny", link: "https://example.com/bryan" },
-    { name: "Jaleesia Rosemond", link: "https://example.com/jaleesia" }
+    {
+      name: "Tamara Denise Pena",
+      link: "https://example.com/tamara",
+      picture: "https://via.placeholder.com/60" // Replace with actual image URL
+    },
+    {
+      name: "Maria da Silva",
+      link: "https://example.com/maria",
+      picture: "https://via.placeholder.com/60" // Replace with actual image URL
+    },
+    {
+      name: "Bryan Blakeny",
+      link: "https://example.com/bryan",
+      picture: "https://via.placeholder.com/60" // Replace with actual image URL
+    },
+    {
+      name: "Jaleesia Rosemond",
+      link: "https://example.com/jaleesia",
+      picture: "https://via.placeholder.com/60" // Replace with actual image URL
+    }
   ];
 
   // Clear existing list
   therapistList.innerHTML = '';
 
-  // Populate the therapist list
+  // Populate the therapist list with pictures
   therapists.forEach(therapist => {
     const listItem = document.createElement('li');
-    listItem.innerHTML = `<a href="${therapist.link}" target="_blank">${therapist.name}</a>`;
+    listItem.innerHTML = `
+      <img src="${therapist.picture}" alt="${therapist.name}">
+      <div>
+        <a href="${therapist.link}" target="_blank">${therapist.name}</a>
+      </div>
+    `;
     therapistList.appendChild(listItem);
   });
 
