@@ -257,7 +257,7 @@
   transform: translateX(20px);
 }
 
-#overlay {
+#escalation-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -268,62 +268,192 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  transition: opacity 0.3s ease;
 }
 
-#overlay-content {
+#escalation-overlay-content {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   max-width: 500px;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
 }
 
-#overlay[style*="display: none"] {
-  opacity: 0;
-}
-
-#overlay[style*="display: flex"] {
-  opacity: 1;
-}
-
-#overlay[style*="display: none"] #overlay-content {
-  transform: translateY(-20px);
-}
-
-#overlay[style*="display: flex"] #overlay-content {
-  transform: translateY(0);
-}
-
-#overlay-content h2 {
+#escalation-overlay-content h2 {
   margin-top: 0;
+  color: #333;
 }
 
-#overlay-content #dynamic-content {
-  margin-bottom: 15px;
-}
-#dynamic-content .message,
-#dynamic-content .poll {
-  margin-bottom: 15px;
+#escalation-overlay-content p {
+  color: #555;
 }
 
-#dynamic-content .poll {
-  background-color: #f9f9f9;
-  padding: 10px;
+#hotline-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#hotline-list li {
+  margin-bottom: 10px;
+}
+
+#hotline-list a {
+  color: #e74c3c; /* Red for urgency */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#hotline-list a:hover {
+  text-decoration: underline;
+}
+
+#close-escalation-overlay {
+  background-color: #e74c3c; /* Red for urgency */
+  color: white;
+  border: none;
+  padding: 10px 20px;
   border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
 }
 
-#close-overlay {
+#close-escalation-overlay:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+#therapist-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#therapist-overlay-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#therapist-overlay-content h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+#therapist-overlay-content p {
+  color: #555;
+}
+
+#therapist-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#therapist-list li {
+  margin-bottom: 10px;
+}
+
+#therapist-list a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#therapist-list a:hover {
+  text-decoration: underline;
+}
+
+#close-therapist-overlay {
   background-color: #4CAF50;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
 }
 
-#close-overlay:hover {
+#close-therapist-overlay:hover {
   background-color: #45a049;
+}
+
+#goals-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#goals-overlay-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#goals-overlay-content h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+#goals-overlay-content h3 {
+  color: #4CAF50; /* Green for positivity */
+}
+
+#goals-overlay-content p {
+  color: #555;
+}
+
+#goals-list,
+#coping-strategies-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#goals-list li,
+#coping-strategies-list li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+#goals-list li::before,
+#coping-strategies-list li::before {
+  content: "✔️"; /* Checkmark for goals and strategies */
+  position: absolute;
+  left: 0;
+  color: #4CAF50; /* Green for positivity */
+}
+
+#close-goals-overlay {
+  background-color: #4CAF50; /* Green for positivity */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+#close-goals-overlay:hover {
+  background-color: #45a049; /* Darker green on hover */
 }

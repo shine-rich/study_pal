@@ -23,41 +23,54 @@
         <!-- Add the toggle switch here -->
         <div id="api-toggle">
           <label for="api-toggle-switch">Use AI:</label>
-          <input type="checkbox" id="api-toggle-switch" checked>
+          <input type="checkbox" id="api-toggle-switch">
         </div>
         <form id="form">
           <input id="message" placeholder="say hi!" autocomplete="off">
           <button id="send" type="submit">Send</button>
         </form>
       </div>
-      <div id="overlay" style="display: none;">
-        <div id="overlay-content">
-          <div id="dynamic-content">
-            <h2>Wave Hunters</h2>
-            <p>2,168 members, 196 online</p>
-            <h3>Holiday Plans</h3>
-            <div class="message">
-              <strong>Roberto</strong>
-              <p>Good morning everyone</p>
-              <p>Any idea what time it is?</p>
-              <p>15:37</p>
-            </div>
-            <div class="message">
-              <strong>Roberto</strong>
-              <p>Still morning in Tokyo!</p>
-              <p>15:37</p>
-            </div>
-            <div class="poll">
-              <strong>Monika Parker</strong>
-              <p>Best waves so far?</p>
-              <p>Anonymous Poll</p>
-              <p>67% South Coast</p>
-              <p>33% White Sands</p>
-              <p>185 votes</p>
-              <p>15:39</p>
-            </div>
-          </div>
-          <button id="close-overlay">Close</button>
+      <div id="therapist-overlay" style="display: none;">
+        <div id="therapist-overlay-content">
+          <h2>Recommended Therapists</h2>
+          <p>Based on your treatment plan, here are some great therapists in your area:</p>
+          <ul id="therapist-list">
+            <!-- Therapist list will be dynamically populated here -->
+          </ul>
+          <button id="close-therapist-overlay">Close</button>
+        </div>
+      </div>
+      <div id="escalation-overlay" style="display: none;">
+        <div id="escalation-overlay-content">
+          <h2>Immediate Support</h2>
+          <p>Your counselor, <strong>Dr. Jane Doe</strong>, has provided the following local resources for immediate support. Please reach out if you need help:</p>
+          <ul id="hotline-list">
+            <!-- Local hotline list will be dynamically populated here -->
+          </ul>
+          <p>You can also contact your counselor directly:</p>
+          <p><strong>Dr. Jane Doe</strong><br>
+          Phone: <a href="tel:+1234567890">+1 (234) 567-890</a><br>
+          Email: <a href="mailto:jane.doe@example.com">jane.doe@example.com</a></p>
+          <button id="close-escalation-overlay">Close</button>
+        </div>
+      </div>
+      <div id="goals-overlay" style="display: none;">
+        <div id="goals-overlay-content">
+          <h2>Your Treatment Plan</h2>
+          <p>Here are your personalized goals and coping strategies, designed to help you feel your best:</p>
+          
+          <h3>🌟 Your Goals</h3>
+          <ul id="goals-list">
+            <!-- Goals will be dynamically populated here -->
+          </ul>
+      
+          <h3>🌈 Coping Strategies</h3>
+          <ul id="coping-strategies-list">
+            <!-- Coping strategies will be dynamically populated here -->
+          </ul>
+      
+          <p>Remember, these are small steps to help you feel better. You're doing great!</p>
+          <button id="close-goals-overlay">Close</button>
         </div>
       </div>
     </main>

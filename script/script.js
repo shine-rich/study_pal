@@ -94,38 +94,148 @@ apiToggle.addEventListener('change', () => {
   console.log(`API mode: ${should_use_api ? 'ON' : 'OFF'}`);
 });
 
-// Add references to the overlay and close button
-const overlay = document.getElementById('overlay');
-const closeOverlayButton = document.getElementById('close-overlay');
+// Add references to the therapist overlay and close button
+const therapistOverlay = document.getElementById('therapist-overlay');
+const closeTherapistOverlayButton = document.getElementById('close-therapist-overlay');
+const therapistList = document.getElementById('therapist-list');
 
-// Function to show the overlay
-function showOverlay(content) {
-  document.getElementById('dynamic-content').innerHTML = `${content}`;
-  overlay.style.display = 'flex';
+// Function to show the therapist overlay
+function showTherapistOverlay() {
+  // Hardcoded therapist data (replace with dynamic data if needed)
+  const therapists = [
+    { name: "Tamara Denise Pena", link: "https://example.com/tamara" },
+    { name: "Maria da Silva", link: "https://example.com/maria" },
+    { name: "Bryan Blakeny", link: "https://example.com/bryan" },
+    { name: "Jaleesia Rosemond", link: "https://example.com/jaleesia" }
+  ];
+
+  // Clear existing list
+  therapistList.innerHTML = '';
+
+  // Populate the therapist list
+  therapists.forEach(therapist => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `<a href="${therapist.link}" target="_blank">${therapist.name}</a>`;
+    therapistList.appendChild(listItem);
+  });
+
+  // Show the overlay
+  therapistOverlay.style.display = 'flex';
 }
 
-// Function to hide the overlay
-function hideOverlay() {
-  overlay.style.display = 'none';
+// Function to hide the therapist overlay
+function hideTherapistOverlay() {
+  therapistOverlay.style.display = 'none';
 }
 
 // Close the overlay when the close button is clicked
-closeOverlayButton.addEventListener('click', hideOverlay);
+closeTherapistOverlayButton.addEventListener('click', hideTherapistOverlay);
+
+// Add references to the escalation overlay and close button
+const escalationOverlay = document.getElementById('escalation-overlay');
+const closeEscalationOverlayButton = document.getElementById('close-escalation-overlay');
+const hotlineList = document.getElementById('hotline-list');
+
+// Function to show the escalation overlay
+function showEscalationOverlay() {
+  // Hardcoded counselor and local hotline data (replace with dynamic data if needed)
+  const counselor = {
+    name: "Dr. Jane Doe",
+    phone: "+1 (234) 567-890",
+    email: "jane.doe@example.com"
+  };
+
+  const localHotlines = [
+    { name: "Houston Crisis Hotline", number: "713-468-5463", link: "tel:713-468-5463" },
+    { name: "Local Mental Health Support", number: "832-393-6630", link: "tel:832-393-6630" },
+    { name: "Houston Emergency Services", number: "911", link: "tel:911" }
+  ];
+
+  // Clear existing list
+  hotlineList.innerHTML = '';
+
+  // Populate the local hotline list
+  localHotlines.forEach(hotline => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <strong>${hotline.name}</strong><br>
+      <a href="${hotline.link}" target="_blank">${hotline.number}</a>
+    `;
+    hotlineList.appendChild(listItem);
+  });
+
+  // Show the overlay
+  escalationOverlay.style.display = 'flex';
+}
+
+// Function to hide the escalation overlay
+function hideEscalationOverlay() {
+  escalationOverlay.style.display = 'none';
+}
+
+// Close the overlay when the close button is clicked
+closeEscalationOverlayButton.addEventListener('click', hideEscalationOverlay);
+
+// Add references to the goals overlay and close button
+const goalsOverlay = document.getElementById('goals-overlay');
+const closeGoalsOverlayButton = document.getElementById('close-goals-overlay');
+const goalsList = document.getElementById('goals-list');
+const copingStrategiesList = document.getElementById('coping-strategies-list');
+
+// Function to show the goals overlay
+function showGoalsOverlay() {
+  // Hardcoded treatment plan data (replace with dynamic data if needed)
+  const treatmentPlan = {
+    goals: ["Practice mindfulness daily", "Break tasks into smaller steps"],
+    copingStrategies: ["Progressive muscle relaxation", "Listen to calming music", "Journal for 10 minutes"]
+  };
+
+  // Clear existing lists
+  goalsList.innerHTML = '';
+  copingStrategiesList.innerHTML = '';
+
+  // Populate the goals list
+  treatmentPlan.goals.forEach(goal => {
+    const listItem = document.createElement('li');
+    listItem.textContent = goal;
+    goalsList.appendChild(listItem);
+  });
+
+  // Populate the coping strategies list
+  treatmentPlan.copingStrategies.forEach(strategy => {
+    const listItem = document.createElement('li');
+    listItem.textContent = strategy;
+    copingStrategiesList.appendChild(listItem);
+  });
+
+  // Show the overlay
+  goalsOverlay.style.display = 'flex';
+}
+
+// Function to hide the goals overlay
+function hideGoalsOverlay() {
+  goalsOverlay.style.display = 'none';
+}
+
+// Close the overlay when the close button is clicked
+closeGoalsOverlayButton.addEventListener('click', hideGoalsOverlay);
 
 const processMessage = async (message) => {
   // random delay for "authenticity"
   const delay = Math.random() + 300;
 
   // Check for predefined commands
-  if (message.toLowerCase().includes("show poll")) {
-    const pollContent = `
-      <h2>Poll Results</h2>
-      <p>Best waves so far?</p>
-      <p>67% South Coast</p>
-      <p>33% White Sands</p>
-      <p>185 votes</p>
-    `;
-    showOverlay(pollContent);
+  // Check for the "show escalation" command
+  if (message.toLowerCase().includes("show escalation")) {
+    showEscalationOverlay();
+    return; // Exit the function to prevent further processing
+  } else if (message.toLowerCase().includes("show therapists")) {
+    // Check for the "show therapists" command
+    showTherapistOverlay();
+    return; // Exit the function to prevent further processing
+  } else if (message.toLowerCase().includes("show goals")) {
+    // Check for the "show goals" command
+    showGoalsOverlay();
     return; // Exit the function to prevent further processing
   }
 
