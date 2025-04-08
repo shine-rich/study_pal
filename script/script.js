@@ -276,7 +276,7 @@ const processMessage = async (message) => {
 
       // Send the user's input to the FastAPI server  
       const response = await Promise.race([
-        fetch('http://chat.santostar.com:8001/chat', {
+        fetch('http://localhost:8001/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
